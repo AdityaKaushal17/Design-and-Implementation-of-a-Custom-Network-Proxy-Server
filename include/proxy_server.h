@@ -1,7 +1,15 @@
-#include "proxy_server.h"
+#pragma once
+#include <string>
 
-int main() {
-    ProxyServer server("127.0.0.1", 8888);
-    server.start();
-    return 0;
-}
+class ProxyServer {
+public:
+    ProxyServer(const std::string& host, int port);
+    void start();
+
+private:
+    std::string host_;
+    int port_;
+    int server_fd_;
+
+    void setup_socket();
+};
